@@ -49,7 +49,7 @@ module.exports = {
             directory: path.resolve(__dirname, 'build'),
        },
        proxy: {
-        '/home/': {
+        '/home/**': {
             target: 'http://localhost:3000/',
             secure: false,
         } 

@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const db = require('./model/model');
 require('dotenv').config();
 
 //handle request bodies
@@ -20,6 +21,13 @@ app.get('/', (req, res) => {
 }
 
 //Routes
+app.get('/home/getUser', (req, res) => {
+    const text = 'SELECT * FROM users;'
+    db.query(text).then((data) => {
+        console.log(data.rows)
+        res.send(200)
+    })
+})
 
 
 //Page Not Found
@@ -39,7 +47,7 @@ app.use((err, req, res, next) => {
 })
 
 //Listening on port 3000
-app.listen(process.env.PORT, () => {console.log(`Listening on port 3000...`)});
+app.listen(3000, () => {console.log(`Listening on port 3000...`)});
 
 //export app
 module.exports = app;
