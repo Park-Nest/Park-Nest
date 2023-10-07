@@ -6,14 +6,26 @@ import {
     Typography,
     Button
   } from "@mui/material";
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import { GlobalContext } from "../context/GlobalState.js";
 
 const Profile = () => {
+
+    // const context = useContext(GlobalContext);
+
+    // function fetchUser() {
+    //   fetch('/home/getUser')
+    //     .then((data) => data.json())
+    //     .then((data) => context.setAllListings(data))
+    // }
+
+    // useEffect(fetchUser, [])
+
     return (
         <Container sx={{marginY: 5}}>
             <Grid>
                 <Typography variant="h2" component="h1" marginTop={5} marginBottom={3} sx={{textAlign: "center"}}>
-                    Welcome User!
+                    Welcome {context.allListings}!
                 </Typography>
             </Grid>
             <Typography variant="h4" component='h2' marginTop={5} marginBottom={3}>
