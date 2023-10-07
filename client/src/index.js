@@ -8,6 +8,30 @@ const router = createBrowserRouter([
     {
         path: "/profile",
         element: <Profile />
+    },
+    {
+        path: '/'
+    },
+    {
+        path: '/login'
+    },
+    {
+        path: '/signup'
+    },
+    {
+        path: '/homepage'
+    },
+    {
+        path: '/listing-booking'
+    },
+    {
+        path: '/listing-creation'
+    },
+    {
+        path: '/confirmed-booking'
+    },
+    {
+        path: '/existing-listing'
     }
 ])
 
