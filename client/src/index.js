@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import reactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Profile from '../pages/profile.jsx';
+import { GlobalProvider } from "../context/GlobalState.js";
 
 
 const router = createBrowserRouter([
@@ -36,5 +37,7 @@ const router = createBrowserRouter([
 ])
 
 reactDOM.createRoot(document.getElementById("root")).render(
-    <RouterProvider router={router} />
+    <GlobalProvider>
+      <RouterProvider router={router} />
+    </GlobalProvider>
 );

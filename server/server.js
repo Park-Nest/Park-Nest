@@ -4,6 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const db = require('./model/model');
 require('dotenv').config();
+const apiRouter = require('./routes/api.js')
 
 //handle request bodies
 app.use(express.json());
@@ -21,12 +22,14 @@ app.get('/', (req, res) => {
 }
 
 //Routes
+// app.use('/home', apiRouter)
+
 app.get('/home/getUser', (req, res) => {
-    const text = 'SELECT * FROM users;'
-    db.query(text).then((data) => {
-        console.log(data.rows)
-        res.send(200)
-    })
+  const text = 'SELECT * FROM users;'
+  db.query(text).then((data) => {
+      console.log(data.rows)
+      res.json(data.rows[0].name)
+  })
 })
 
 
