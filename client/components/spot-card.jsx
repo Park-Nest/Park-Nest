@@ -5,23 +5,37 @@ import {
     Button
   } from "@mui/material";
   import { Box } from "@mui/system";
-  import { AttachMoney, AccessTime } from "@mui/icons-material"
+  import { AttachMoney, AccessTime, Map } from "@mui/icons-material";
+  import { useNavigate, createSearchParams } from "react-router-dom";
   import React from "react";
 
-const SpotCard = () => {
+const SpotCard = ({ listingid, name, address, rate, hours, photo, edit }) => {
+  const navigate = useNavigate();
+  const param = {listingID: listingid}
 
 return (
 <Grid item xs={4} md={3}>
             <Paper elevation={3} className="paper">
-              <img src="https://media.istockphoto.com/id/1335929190/photo/car-parking-space.jpg?s=612x612&w=0&k=20&c=1Wekx1HZnQyA83y5kJElLyUCDoCCk8cLxHdSVjcS7U8=" alt="parking spot" className="spot"/>
+              <img src={photo} alt="parking spot" className="spot"/>
               <Box
                 sx={{
                   paddingX: 1,
                 }}
               >
                 <Typography variant="subtitle1" component="h2">
-                  Parking Spot Description/Title
+                  {name}
                 </Typography>
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <Map style={{ width: 12.5 }} />
+                  <Typography variant="body2" component="p" marginLeft={0.5}>
+                    {address}
+                  </Typography>
+                </Box>
                 <Box
                   sx={{
                     display: "flex",
@@ -30,7 +44,7 @@ return (
                 >
                   <AttachMoney style={{ width: 12.5 }} />
                   <Typography variant="body2" component="p" marginLeft={0.5}>
-                    $10/Hour
+                    ${rate}/Hour
                   </Typography>
                 </Box>
                 <Box
@@ -40,8 +54,8 @@ return (
                   }}
                 >
                   <AccessTime style={{ width: 12.5 }} />
-                  <Typography variant="body3" component="p" marginLeft={0.5}>
-                    2-5PM
+                  <Typography variant="body2" component="p" marginLeft={0.5}>
+                    {hours}
                   </Typography>
                 </Box>
                 <Box
@@ -50,7 +64,7 @@ return (
                     padding: 1
                   }}
                 >
-                 <Button variant="outlined">Edit</Button>
+                 <Button variant="outlined" size='small' onClick={() => navigate({pathname: edit, search: `?${createSearchParams(param)}`})}>Edit</Button>
                 </Box>
               </Box>
             </Paper>
