@@ -6,12 +6,11 @@ import {
   } from "@mui/material";
   import { Box } from "@mui/system";
   import { AttachMoney, AccessTime, Map } from "@mui/icons-material";
-  import { useNavigate, createSearchParams } from "react-router-dom";
+  import { useNavigate} from "react-router-dom";
   import React from "react";
 
 const SpotCard = ({ listingid, name, address, rate, hours, photo, edit }) => {
   const navigate = useNavigate();
-  const param = {listingID: listingid}
 
 return (
 <Grid item xs={4} md={3}>
@@ -64,7 +63,7 @@ return (
                     padding: 1
                   }}
                 >
-                 <Button variant="outlined" size='small' onClick={() => navigate({pathname: edit, search: `?${createSearchParams(param)}`})}>Edit</Button>
+                 <Button variant="outlined" size='small' onClick={() => navigate(edit, {state: {id: listingid}})}>Edit</Button>
                 </Box>
               </Box>
             </Paper>
