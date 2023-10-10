@@ -1,5 +1,5 @@
 import SpotCard from "../components/spot-card.jsx";
-import '../src/styles.css'
+import '../styles/styles.css'
 import {
     Grid,
     Container,
