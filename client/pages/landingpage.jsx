@@ -43,7 +43,7 @@ import { useNavigate } from "react-router-dom";
     }}
         >
         <Button sx={{
-            mt:'20%', mr:'10%', mb: "20%"}} variant="contained" onClick={() => {navigate("/login")}}>Login</Button> <Button sx={{mt:'20%', ml:'10%', mb: "20%"}} variant="contained" onClick={() => navigate("/signup")}>Signup</Button>
+           mr: '5%', mt:'20%', mb: "20%"}} variant="contained" onClick={() => {navigate("/login")}}>Login</Button> <Button sx={{ml: '5%', mt:'20%', mb: "20%"}} variant="contained" onClick={() => navigate("/signup")}>Signup</Button>
         </Box>
 
         </Container>
