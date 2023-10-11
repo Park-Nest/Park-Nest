@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import reactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Profile from '../pages/profile.jsx';
+import Landing from '../pages/landingpage.jsx';
+import ExistingListing from '../pages/existingListing.jsx';
 import { GlobalProvider } from "../context/GlobalState.js";
+import ExistingListings from "../pages/existingListing.jsx";
 
 
 const router = createBrowserRouter([
@@ -11,7 +14,8 @@ const router = createBrowserRouter([
         element: <Profile />
     },
     {
-        path: '/'
+        path: '/',
+        element: <Landing />
     },
     {
         path: '/login'
@@ -32,7 +36,8 @@ const router = createBrowserRouter([
         path: '/confirmed-booking'
     },
     {
-        path: '/existing-listing'
+        path: '/existing-listing',
+        element: <ExistingListings/>
     }
 ])
 

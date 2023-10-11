@@ -25,7 +25,7 @@ const Profile = () => {
         <Container sx={{marginY: 5}}>
             <Grid>
                 <Typography variant="h2" component="h1" marginTop={5} marginBottom={3} sx={{textAlign: "center"}}>
-                    Welcome {context.allListings}!
+                    Welcome!
                 </Typography>
             </Grid>
             <Typography variant="h4" component='h2' marginTop={5} marginBottom={3}>
