@@ -5,6 +5,7 @@ import { GlobalProvider } from "../context/GlobalState.js";
 import Profile from '../pages/profile.jsx';
 import Signup from "../pages/signup.jsx";
 import Login from "../pages/login.jsx";
+import ExistingListing from "../pages/existingListings.jsx";
 
 const router = createBrowserRouter([
     {
@@ -35,7 +36,8 @@ const router = createBrowserRouter([
         path: '/confirmed-booking'
     },
     {
-        path: '/existing-listing'
+        path: '/existing-listing',
+        element: <ExistingListing />
     }
 ])
 
