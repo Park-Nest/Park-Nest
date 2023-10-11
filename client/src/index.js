@@ -6,7 +6,7 @@ import Profile from '../pages/profile.jsx';
 import Signup from "../pages/signup.jsx";
 import Login from "../pages/login.jsx";
 import ExistingListing from "../pages/existingListings.jsx";
-ç
+
 const router = createBrowserRouter([
     {
         path: "/profile",
