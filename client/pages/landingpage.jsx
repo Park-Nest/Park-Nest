@@ -4,9 +4,8 @@ import {
     Container,
     Box,
   } from "@mui/material";
-import '../src/styles.css'
 import { blue } from '@mui/material/colors';
-import React, { useContext, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 

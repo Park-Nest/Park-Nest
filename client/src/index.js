@@ -4,10 +4,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Profile from '../pages/profile.jsx';
 import Landing from '../pages/landingpage.jsx';
 import { GlobalProvider } from "../context/GlobalState.js";
-import Profile from '../pages/profile.jsx';
 import Signup from "../pages/signup.jsx";
 import Login from "../pages/login.jsx";
-import ExistingListing from "../pages/existingListings.jsx";
 
 const router = createBrowserRouter([
     {
@@ -40,7 +38,7 @@ const router = createBrowserRouter([
     },
     {
         path: '/existing-listing',
-        element: <ExistingListing />
+
     }
 ])
 
