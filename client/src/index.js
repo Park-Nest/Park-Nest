@@ -3,9 +3,7 @@ import reactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Profile from '../pages/profile.jsx';
 import Landing from '../pages/landingpage.jsx';
-import ExistingListing from '../pages/existingListing.jsx';
 import { GlobalProvider } from "../context/GlobalState.js";
-import ExistingListings from "../pages/existingListing.jsx";
 
 
 const router = createBrowserRouter([
@@ -24,10 +22,12 @@ const router = createBrowserRouter([
         path: '/signup'
     },
     {
-        path: '/homepage'
+        path: '/login',
+        element: <Login />
     },
     {
-        path: '/listing-booking'
+        path: '/signup',
+        element: <Signup />
     },
     {
         path: '/listing-creation'
