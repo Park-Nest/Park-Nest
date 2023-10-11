@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import reactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Profile from '../pages/profile.jsx';
 import { GlobalProvider } from "../context/GlobalState.js";
+import Profile from '../pages/profile.jsx';
+import Signup from "../pages/signup.jsx";
 
 
 const router = createBrowserRouter([
@@ -17,7 +18,8 @@ const router = createBrowserRouter([
         path: '/login'
     },
     {
-        path: '/signup'
+        path: '/signup',
+        element: <Signup />
     },
     {
         path: '/homepage'
