@@ -69,8 +69,8 @@ import { createTheme, ThemeProvider } from '@mui/material';
         mt: '20vh',
         border: 4,
         borderColor: "common.white",
-        width: '70%',
-        height: '20%',
+        width: '65%',
+        height: '18%',
         padding: '3px',
         justifyContent: 'center',
         alignItems:'center',
@@ -80,7 +80,7 @@ import { createTheme, ThemeProvider } from '@mui/material';
 
         <ThemeProvider theme={theme}>
         <Typography variant="h4" component='h2' color="common.white" marginTop="10%" marginBottom="10%">
-        <Link href='/login' color="common.white" variant="h4">Login</Link> or <Link href='/signup' color="common.white">Sign Up</Link> to find your space today.
+        <Link href='/login' color="common.white" variant="h4">Log In</Link> or <Link href='/signup' color="common.white">Sign Up</Link> to find your space today.
         </Typography>
         </ThemeProvider>
        
