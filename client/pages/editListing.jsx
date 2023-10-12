@@ -1,4 +1,5 @@
 import Navbar from "../components/navbar.jsx"
+import Footer from "../components/footer.jsx"
 import {
     Box,
     TextField,
@@ -66,13 +67,15 @@ import {
 
 
     return (
+      <div>
+        <Navbar />
         <Grid container spacing={2}>
-            <Grid sx={{lg:6, height:'100%', width: '50%', mt:5}}>
+            <Grid sx={{lg:6, height:'10vh', width: '50%', mt:5}}>
                 <Box sx={{ ml: 3}}>
                 <img src="https://media.istockphoto.com/id/1335929190/photo/car-parking-space.jpg?s=612x612&w=0&k=20&c=1Wekx1HZnQyA83y5kJElLyUCDoCCk8cLxHdSVjcS7U8=" width={'100%'} height={'100%'} />
                 </Box>
             </Grid>
-            <Grid sx={{lg:6, height:'90vh', width: '50%', mt:3, mb: 8, alignItems:"left"}}>
+            <Grid sx={{lg:6, height:'10vh', width: '50%', mt:3, mb: 8, alignItems:"left"}}>
                 <Box component="form" noValidate onSubmit={handleSubmit}
                 sx={{
                     height: '100%',
@@ -139,6 +142,8 @@ import {
                 </Box>
             </Grid>
         </Grid>
+        <Footer />
+    </div>    
   )};
 
   export default EditListing;

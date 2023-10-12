@@ -28,13 +28,22 @@ router.get('/getBookings', (req, res) => {
 
 router.post('/update-listing', (req, res) => {
     const updatedListing = req.body;
-    const ID = req.body.listingID;
+    const listingid = req.body.listingid;
     //let text = "UPDATE listings SET hours='8AM-10PM' WHERE listingid = 3;"
     let text = "UPDATE listings SET name=$1, address=$2, city=$3, state=$4, zipcode=$5, rate=$6, description=$7 WHERE listingid =3;"
 
     db.query(text, [updatedListing.name, updatedListing.address, updatedListing.city, updatedListing.state, updatedListing.zipcode, Number(updatedListing.rate), updatedListing.description])
 
     res.status(200);
+})
+
+router.post('/remove-listing', (req, res) => {
+    const listingid = req.body;
+    let text = "DELETE FROM listings WHERE listingid =$1"
+    db.query(text, listingid);
+
+    res.status(200);
+
 })
 
 module.exports = router;
