@@ -11,11 +11,13 @@ userController.addUser = async (req, res, next) => {
 
   // Try statement to add inputs to database
   try {
-
-
-
-    const addUserQuery = 'INSERT INTO users(name, address, password) VALUES (name)'
-    await db.query(addUserQuery)
+    
+    // SQL Command to insert into users table
+    const addUserQuery = 'INSERT INTO users(name, address, password) VALUES ($1, $2, $3)'
+    await db.query(addUserQuery, [name, email, hashedPassword]).then((data) => {
+      console.log(data)
+      res.status(200).json(data)
+    })
 
     return next();
   } catch (err) {
