@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const db = require('../model/model');
 
 const userController = {};
 
@@ -7,20 +8,25 @@ userController.addUser = async (req, res, next) => {
 
   // Object destructing to grab user inputs from request body
   const { name, email } = req.body;
-  const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
   // Try statement to add inputs to database
   try {
     
-    // SQL Command to insert into users table
-    const addUserQuery = 'INSERT INTO users(name, address, password) VALUES ($1, $2, $3)'
-    await db.query(addUserQuery, [name, email, hashedPassword]).then((data) => {
-      console.log(data)
-      res.status(200).json(data)
-    })
+    await bcrypt.hash(req.body.password, 10, function (err, hash) {
+      let values = [name, email, hash]
+      
+      // SQL Command to insert into users table
+      const addUserQuery = 'INSERT INTO users(name, email, password) VALUES ($1, $2, $3)';
+
+      db.query(addUserQuery, values, function(err,res) {
+        if (err) throw err;
+        else console.log("Stored!")
+      });
+    });
 
     return next();
-  } catch (err) {
+  } 
+  catch (err) {
     return next({
       log: `userController.addUser: ERROR: ${err}`,
       message: { err: 'Error occurred in userController.addUser. Check server logs for more details.'},

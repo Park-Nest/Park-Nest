@@ -26,20 +26,24 @@ export default function SignUp() {
 
   // Function to send inputted data to database
   const handleSubmit = (event) => {
+
+    // preventDefault is called on the event when submitting the form to prevent a browser reload/refresh.
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
       name: data.get('name'),
       email: data.get('email'),
-      password: data.get('password'),
+      password: data.get('password')
     });
-
     // Logic to take user inputted data to create a new user in Users table
     if (!data.get('email') || !data.get('password') || !data.get('name')) {
       alert('Please fill out all fields!')
     } else {
       fetch('/home/auth/signup', {
         method: 'POST',
+        headers: {
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify({
           name: data.get('name'),
           email: data.get('email'),
