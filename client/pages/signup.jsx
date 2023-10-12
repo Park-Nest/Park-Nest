@@ -57,7 +57,9 @@ export default function SignUp() {
           navigate('/login')
         }
       })
-      .catch(alert("Signup Failed! Please try again."))
+      .catch((err => {
+        alert(`Signup Failed! Please try again. ${err}`);
+      }))
     }
   };
 
