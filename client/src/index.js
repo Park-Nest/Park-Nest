@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import reactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Profile from '../pages/profile.jsx';
-import Landing from '../pages/landingpage.jsx';
 import { GlobalProvider } from "../context/GlobalState.js";
+import Profile from '../pages/profile.jsx';
 import Signup from "../pages/signup.jsx";
 import Login from "../pages/login.jsx";
 
@@ -13,8 +12,7 @@ const router = createBrowserRouter([
         element: <Profile />
     },
     {
-        path: '/',
-        element: <Landing />
+        path: '/'
     },
     {
         path: '/login',
@@ -25,12 +23,11 @@ const router = createBrowserRouter([
         element: <Signup />
     },
     {
-        path: '/login',
-        element: <Login />
+        path: '/homepage',
+        element: < Homepage />
     },
     {
-        path: '/signup',
-        element: <Signup />
+        path: '/listing-booking'
     },
     {
         path: '/listing-creation'
@@ -39,8 +36,7 @@ const router = createBrowserRouter([
         path: '/confirmed-booking'
     },
     {
-        path: '/existing-listing',
-
+        path: '/existing-listing'
     }
 ])
 
