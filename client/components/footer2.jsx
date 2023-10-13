@@ -25,7 +25,7 @@ import Copyright from '../components/copyright.jsx';
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
-export default function Footer() {
+export default function Footer2() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <Box
@@ -33,7 +33,7 @@ export default function Footer() {
           display: 'flex',
           flexDirection: 'column',
           width: '100%',
-          minHeight: '100vh',
+          minHeight: '10vh',
         }}
       >
         <CssBaseline />

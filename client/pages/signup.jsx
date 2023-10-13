@@ -6,8 +6,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -16,19 +14,53 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Copyright from "../components/copyright.jsx";
+import { useNavigate } from "react-router-dom";
 
 // TODO remove, this demo shouldn't need to reset the theme.
 
 const defaultTheme = createTheme();
 
 export default function SignUp() {
+
+  const navigate = useNavigate();
+
+  // Function to send inputted data to database
   const handleSubmit = (event) => {
+
+    // preventDefault is called on the event when submitting the form to prevent a browser reload/refresh.
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
+      name: data.get('name'),
       email: data.get('email'),
-      password: data.get('password'),
+      password: data.get('password')
     });
+    // Logic to take user inputted data to create a new user in Users table
+    if (!data.get('email') || !data.get('password') || !data.get('name')) {
+      alert('Please fill out all fields!')
+    } else {
+      fetch('/home/auth/signup', {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          name: data.get('name'),
+          email: data.get('email'),
+          password: data.get('password')
+        })
+      })
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.user) {
+          alert("Successfully signed up!")
+          navigate('/login')
+        }
+      })
+      .catch((err => {
+        alert(`Signup Failed! Please try again. ${err}`);
+      }))
+    }
   };
 
   return (
