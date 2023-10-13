@@ -15,7 +15,7 @@ const SpotCard = ({ listingid, name, address, rate, hours, photo, edit }) => {
 return (
 <Grid item xs={4} md={3}>
             <Paper elevation={3} className="paper">
-              <img src={photo} alt="parking spot" className="spot"/>
+              <img src={photo} alt="parking spot" className="spot-card-img"/>
               <Box
                 sx={{
                   paddingX: 1,
