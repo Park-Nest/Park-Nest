@@ -9,39 +9,41 @@ import Footer from "../components/footer.jsx";
 import GoogleMapApi from "../components/googlemapswrapper.jsx";
 
 const ConfirmedBooking = () => {
-    const [listingID, setListingID] = useState()
-    const [lat, setLat] = useState(0)
-    const [lng, setLng] = useState(0)
+    const [listingID, setListingID] = useState(0);
+    const [myBooking, setMyBooking] = useState({});
+    const [latLng, setLatLng] = useState([]);
     const location = useLocation();
     const context = useContext(GlobalContext);
     const navigate = useNavigate();
 
     let passedInID = location.state.id;
     let userBookings = context.userBookings;
-    let myBooking = useRef({})
+    let currBooking = useRef({})
 
     userBookings.forEach((booking) => {
-        if (booking.listingid === passedInID) myBooking.current = booking;
+        if (booking.listingid === passedInID) currBooking.current = booking;
     })
 
     useEffect(() => {
-        //Google Geocoder - get lat/long from address
-        setDefaults({
-            key: ,
+        //Set listingID so it can be deleted from Bookings table (passed to cancel button)
+        setListingID(passedInID)
+        //set myBooking so it persist the re-render
+        setMyBooking(currBooking.current)
+    }, [])
+
+    useEffect(() => {
+         //Google Geocoder - get lat/long from address
+         setDefaults({
+            key: process.env.REACT_APP_GOOGLE_API,
             language: "en",
             region: "es"
         })
-        fromAddress(`${myBooking.current.address + ' ' + myBooking.current.city + ' ' + myBooking.current.state}`)
+        fromAddress(`${currBooking.current.address + ' ' + currBooking.current.city + ' ' + currBooking.current.state}`)
             .then(({ results }) => {
                 const { lat, lng } = results[0].geometry.location;
-                setLat(lat);
-                setLng(lng);
+                setLatLng([{lat: lat, lng: lng}])
             })
             .catch(console.err)
-        
-        //Set listingID so it can be deleted from Bookings table (passed to cancel button)
-        setListingID(passedInID)
-
     }, [])
    
     function deleteBooking(listingID){
@@ -63,10 +65,10 @@ const ConfirmedBooking = () => {
             <Grid container spacing={3}>
                 <Grid item xs={6}>
                     <Paper elevation={4}>
-                        <img src={myBooking.current.photo} alt="parking spot" className="one-spot"/>
+                        <img src={myBooking.photo} alt="parking spot" className="one-spot"/>
                         <Box sx={{paddingX: 1, justifyContent: "center", display: "flex",}}>
                             <Typography variant="h4" component="h2">
-                                {myBooking.current.name}
+                                {myBooking.name}
                             </Typography>
                         </Box>
                         <Box
@@ -79,7 +81,7 @@ const ConfirmedBooking = () => {
                         >
                             <Map style={{ width: 15 }} />
                             <Typography variant="subtitle1" component="p" marginLeft={1}>
-                                {myBooking.current.address}
+                                {myBooking.address}
                             </Typography>
                         </Box>
                         <Box
@@ -92,7 +94,7 @@ const ConfirmedBooking = () => {
                         >
                             <AttachMoney style={{ width: 15 }} />
                             <Typography variant="subtitle1" component="p" marginLeft={1}>
-                                ${myBooking.current.rate}/Hour
+                                ${myBooking.rate}/Hour
                             </Typography>
                         </Box>
                         <Box
@@ -105,7 +107,7 @@ const ConfirmedBooking = () => {
                         >
                             <AccessTime style={{ width: 15 }} />
                             <Typography variant="subtitle1" component="p" marginLeft={1}>
-                                {myBooking.current.hours}
+                                {myBooking.hours}
                             </Typography>
                         </Box>
                         <Box
@@ -118,7 +120,7 @@ const ConfirmedBooking = () => {
                         >
                             <Description style={{ width: 15 }} />
                             <Typography variant="subtitle1" component="p" marginLeft={1}>
-                                {myBooking.current.description}
+                                {myBooking.description}
                             </Typography>
                         </Box>
                         <Box
@@ -136,7 +138,7 @@ const ConfirmedBooking = () => {
                 </Grid>
                 <Grid item xs={6}>
                     <Paper elevation={4}>
-                            <GoogleMapApi myLat={lat} myLng={lng}/>
+                            <GoogleMapApi latLng={latLng}/>
                     </Paper>
                 </Grid>
             </Grid>

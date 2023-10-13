@@ -3,18 +3,20 @@ import { useLoadScript, GoogleMap, Marker } from "@react-google-maps/api";
 import { useMemo } from "react";
 
 
-export default function GoogleMapApi({ myLat, myLng }) {
+export default function GoogleMapApi({ latLng }) {
     const { isLoaded } = useLoadScript({
-        googleMapsApiKey: 
+        googleMapsApiKey: process.env.REACT_APP_GOOGLE_API
     });
 
-    if (!isLoaded) return <div>Loading...</div>
-    return <Map myLat={myLat} myLng={myLng}/>;
+    if (!isLoaded){return <div>Loading...</div>}
+
+    const coordinates = latLng.map((location, index) => {return <Marker position={{lat: location.lat, lng: location.lng}} key={index}/>})
+    return <Map coordinates={coordinates}/>;
 }
 
-function Map({ myLat, myLng }) {
+function Map({ coordinates }) {
     const center = useMemo(() => ({lat: 34.0549 , lng: -118.243683}), []);
     return <GoogleMap zoom={9} center={center} mapContainerClassName="map-container">
-        <Marker position={{lat: myLat, lng: myLng}}/>
+        {coordinates}
     </GoogleMap>
 }
