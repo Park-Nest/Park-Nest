@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import reactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Profile from '../pages/profile.jsx';
+import ListingBooking from "../pages/ListingBooking.jsx";
 import { GlobalProvider } from "../context/GlobalState.js";
 
 
@@ -23,7 +24,8 @@ const router = createBrowserRouter([
         path: '/homepage'
     },
     {
-        path: '/listing-booking'
+        path: '/listing-booking',
+        element: <ListingBooking />
     },
     {
         path: '/listing-creation'

@@ -11,15 +11,15 @@ import { GlobalContext } from "../context/GlobalState.js";
 
 const Profile = () => {
 
-    // const context = useContext(GlobalContext);
+    const context = useContext(GlobalContext);
 
-    // function fetchUser() {
-    //   fetch('/home/getUser')
-    //     .then((data) => data.json())
-    //     .then((data) => context.setAllListings(data))
-    // }
+    function fetchUser() {
+      fetch('/home/getUser')
+        .then((data) => data.json())
+        .then((data) => context.setAllListings(data))
+    }
 
-    // useEffect(fetchUser, [])
+    useEffect(fetchUser, [])
 
     return (
         <Container sx={{marginY: 5}}>

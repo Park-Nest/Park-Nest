@@ -1,7 +1,7 @@
 const { Pool } = require('pg');
 require('dotenv').config();
-
-const PG_URI= process.env.PG_URI;
+//not using dot.env for my feature because my.env files arent loading in currently
+const PG_URI='postgres://fadsabzn:s6yxZFZYB_qhcehpRT8TkmNkiram-Ouz@peanut.db.elephantsql.com/fadsabzn';
 
 const pool = new Pool({
     connectionString: PG_URI

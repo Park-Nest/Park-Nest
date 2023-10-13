@@ -2,15 +2,18 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 const db = require('./model/model');
 require('dotenv').config();
 const apiRouter = require('./routes/api.js')
+const listingsController = require('./controller/listingsController.js');
 
 //handle request bodies
 app.use(express.json());
+//handle JSON req objects for multiple parameters in form data. 
+app.use(bodyParser.json());
 //handle cookies
 app.use(cookieParser());
-
 //npm start - serves index.html:
 if (process.env.NODE_ENV === 'production'){
     //statically serve everything in the build folder on the route '/build'
@@ -24,6 +27,33 @@ app.get('/', (req, res) => {
 //Routes
 // app.use('/home', apiRouter)
 
+//listingBookingRouter
+    //User makes a choice to which spot they want to book - get requests sends to listing booking page. 
+    //When spot is chosen and button is clicked - Post requests book spot. 
+    //Uppdate database for their listings and anyother data that needs to be updated. 
+
+app.get('/listing-booking/:listingid', (req, res) => {
+    //listingid above will be a number
+    let listingid = req.params.listingid;
+    const text = `SELECT * FROM listings WHERE listingid=${listingid}`;
+        db.query(text).then((data)=> {
+            console.log(data.rows);
+            res.status(200).json(data.rows[0].listingid);
+        })
+    });
+
+
+//post request to insert data.
+app.post('/listing-Booking/:listingid/:userid', (req, res) => {
+    // Extract parameters from the URL
+    const listingid = req.params.listingid;
+    const userid = req.params.userid;
+  
+    // Call the controller function and pass the parameters
+    listingsController.bookListing(req, res, listingid, userid);
+  });
+
+//gets specific user from database. 
 app.get('/home/getUser', (req, res) => {
   const text = 'SELECT * FROM users;'
   db.query(text).then((data) => {
