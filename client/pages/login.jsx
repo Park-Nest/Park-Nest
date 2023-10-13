@@ -11,6 +11,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Copyright from '../components/copyright.jsx';
+import { useNavigate } from 'react-router-dom';
 
 // TODO remove, this demo shouldn't need to reset the theme.
 
@@ -18,6 +19,9 @@ import Copyright from '../components/copyright.jsx';
 const defaultTheme = createTheme();
 
 export default function Login() {
+
+  // Initialize navigate constant
+  const navigate = useNavigate();
   
   // Function to check validation of user logging in
   const handleSubmit = (event) => {
@@ -48,6 +52,8 @@ export default function Login() {
         if (result.user) {
           alert('Successfully logged in!');
           navigate('/homepage')
+        } else {
+          alert('Please try again!')
         }
       })
       .catch((err) => {

@@ -6,6 +6,7 @@ import Landing from '../pages/landingpage.jsx';
 import { GlobalProvider } from "../context/GlobalState.js";
 import Signup from "../pages/signup.jsx";
 import Login from "../pages/login.jsx";
+import Homepage from "../components/homepage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
     {
         path: '/signup',
         element: <Signup />
+    },
+    {
+        path: '/homepage',
+        element: <Homepage />
     },
     {
         path: '/listing-creation'

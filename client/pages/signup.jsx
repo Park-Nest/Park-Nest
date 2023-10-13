@@ -1,6 +1,3 @@
-// import React from "react";
-import Footer from "../components/footer.jsx";
-
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
