@@ -35,6 +35,7 @@ router.get('/getBookings', (req, res) => {
 })
 
 router.delete('/deleteBooking', (req, res) => {
+    console.log('req body id:', req.body.id)
     const text = 'DELETE FROM bookings WHERE listingid=$1';
     const values = [req.body.id]
     db.query(text, values).then(data => {

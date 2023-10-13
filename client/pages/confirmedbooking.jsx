@@ -9,46 +9,51 @@ import Footer from "../components/footer.jsx";
 import GoogleMapApi from "../components/googlemapswrapper.jsx";
 
 const ConfirmedBooking = () => {
+    const [listingID, setListingID] = useState()
     const [lat, setLat] = useState(0)
     const [lng, setLng] = useState(0)
     const location = useLocation();
     const context = useContext(GlobalContext);
     const navigate = useNavigate();
-    //all user bookings - global user bookings state
+
+    let passedInID = location.state.id;
     let userBookings = context.userBookings;
-    //passed in bookingID #
-    let bookingID = location.state.bookingID
-    //passed in booking details via bookingID and global state (currently loses data after page refresh)
     let myBooking = useRef({})
-    //find the booking that has the passed in ID 
+
     userBookings.forEach((booking) => {
-        if (booking.bookingid === bookingID) myBooking.current = booking;
-    })
-   
-    setDefaults({
-        key: ,
-        language: "en",
-        region: "es"
+        if (booking.listingid === passedInID) myBooking.current = booking;
     })
 
-    fromAddress(`${myBooking.current.address}`)
-        .then(({ results }) => {
-            const { lat, lng } = results[0].geometry.location;
-            setLat(lat);
-            setLng(lng);
-            console.log('myBookingLatLong', lat)
+    useEffect(() => {
+        //Google Geocoder - get lat/long from address
+        setDefaults({
+            key: ,
+            language: "en",
+            region: "es"
         })
-        .catch(console.err)
+        fromAddress(`${myBooking.current.address + ' ' + myBooking.current.city + ' ' + myBooking.current.state}`)
+            .then(({ results }) => {
+                const { lat, lng } = results[0].geometry.location;
+                setLat(lat);
+                setLng(lng);
+            })
+            .catch(console.err)
+        
+        //Set listingID so it can be deleted from Bookings table (passed to cancel button)
+        setListingID(passedInID)
 
-    const deleteBooking = (bookingID) => {
-        fetch('/home/', {
+    }, [])
+   
+    function deleteBooking(listingID){
+        console.log('listingID to delete: ', listingID)
+        fetch('/home/deleteBooking', {
             method: 'DELETE',
-            body: JSON.stringify({id: bookingID}),
+            body: JSON.stringify({id: listingID}),
             headers: { 'Content-Type': 'application/json'}
         }).then(() => {
             alert('Booking Deleted!')
             navigate('/Profile')
-        })
+        }).catch(() => console.log('delete booking request failed'))
     }
     
     return(
@@ -125,7 +130,7 @@ const ConfirmedBooking = () => {
                             display: "flex",
                             }}
                             >
-                            <Button variant="contained" size='medium'color="error" onClick={() => deleteBooking()}>Cancel</Button>
+                            <Button variant="contained" size='medium'color="error" onClick={() => {console.log('booking id in button:', listingID); deleteBooking(listingID)}}>Cancel</Button>
                         </Box>
                     </Paper>
                 </Grid>
