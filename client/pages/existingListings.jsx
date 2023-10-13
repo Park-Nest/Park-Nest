@@ -21,7 +21,6 @@ import {
   const [bookingsLoading, setBookingsLoading] = useState(true);
   const location = useLocation();
   const listingid = location.state.id;
-  console.log(listingid)
     
     useEffect(() => {
         getUserInfo()
@@ -31,7 +30,6 @@ import {
         fetch('/home/getListings')
             .then(res => res.json())
             .then(res => context.setUserListings(res))
-            .then(() => setLoading(false))
             .catch(err => console.log('error: failed to retrieve listings'))
 
         fetch('/home/getBookings')
@@ -39,7 +37,7 @@ import {
             .then(res => context.setUserBookings(res))
             .catch(err => console.log('error: failed to retrieve bookings')) 
 
-
+        setLoading(false);
     };
 
     if (loading){
@@ -67,14 +65,10 @@ import {
         allListings.forEach((el) => {
           if (listingid === el.listingid) userListing = el
         })
-
-        console.log(userListing.photo)
     
       const handleClick = () => {
 
       let failed = false;
-
-      console.log(allBookings)
 
   // check whether this listing has a current booking and alert user that listings with a current booking can't be removed
       allBookings.forEach((el) => {
@@ -84,19 +78,22 @@ import {
         }
       });
 
-      if (failed) return navigate('/existing-listing', {state: {id: userListing.listingid}});
+      if (failed) return 
 
-    //   const options = {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify({listingid: userListing.listingid})
-    //   };
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({listingid: userListing.listingid})
+      };
     
-    //   fetch('/home/remove-listing', options)
-    //   .then(navigate('/profile'))
-    //   .catch(err => console.log('Unable to remove listing'))
+      fetch('/home/remove-listing', options)
+        .then(() => {
+          alert('listing deleted')
+          navigate('/profile')
+        })
+        .catch(err => console.log('Unable to remove listing'))
 
     };
 

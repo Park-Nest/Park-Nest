@@ -56,8 +56,6 @@ import { GlobalContext } from "../context/GlobalState.js";
           }
         });
 
-        context.setUserListings(allListings);
-
           for (let key in editedListing) {
             if (editedListing[key] != null && editedListing[key] != "") listingUpdate[key] = editedListing[key]
           }
@@ -71,7 +69,7 @@ import { GlobalContext } from "../context/GlobalState.js";
           }
 
           fetch('/home/update-listing', options)
-            .then(navigate('/existing-listing', {state: {id: returnid}}))
+            .then(() => navigate('/existing-listing', {state: {id: returnid}}))
   
       };
 
