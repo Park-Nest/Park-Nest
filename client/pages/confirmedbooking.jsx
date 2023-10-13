@@ -32,13 +32,14 @@ const ConfirmedBooking = () => {
     }, [])
 
     useEffect(() => {
+        console.log(myBooking)
          //Google Geocoder - get lat/long from address
          setDefaults({
             key: process.env.REACT_APP_GOOGLE_API,
             language: "en",
             region: "es"
         })
-        fromAddress(`${currBooking.current.address + ' ' + currBooking.current.city + ' ' + currBooking.current.state}`)
+        fromAddress(`${myBooking.address + ' ' + myBooking.city + ' ' + myBooking.state}`)
             .then(({ results }) => {
                 const { lat, lng } = results[0].geometry.location;
                 setLatLng([{lat: lat, lng: lng}])
@@ -47,7 +48,6 @@ const ConfirmedBooking = () => {
     }, [])
    
     function deleteBooking(listingID){
-        console.log('listingID to delete: ', listingID)
         fetch('/home/deleteBooking', {
             method: 'DELETE',
             body: JSON.stringify({id: listingID}),
@@ -132,7 +132,7 @@ const ConfirmedBooking = () => {
                             display: "flex",
                             }}
                             >
-                            <Button variant="contained" size='medium'color="error" onClick={() => {console.log('booking id in button:', listingID); deleteBooking(listingID)}}>Cancel</Button>
+                            <Button variant="contained" size='medium'color="error" onClick={() => deleteBooking(listingID)}>Cancel</Button>
                         </Box>
                     </Paper>
                 </Grid>
