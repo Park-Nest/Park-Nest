@@ -15,14 +15,14 @@ app.use(express.json());
 app.use(cookieParser());
 
 //npm start - serves index.html:
-if (process.env.NODE_ENV === 'production'){
+if (process.env.NODE_ENV === 'production') {
     //statically serve everything in the build folder on the route '/build'
     app.use('/build', express.static(path.join(__dirname, '../build/')));
     // serve index.html on the route '/'
     app.get('/', (req, res) => {
       return res.status(200).sendFile(path.join(__dirname, '../index.html'));
     })
-  }
+}
 
 // requests for static files
 app.use(express.static(path.resolve(__dirname, '../client')))
