@@ -20,21 +20,21 @@ module.exports = {
         {
             test: /\.s?[ac]ss$/,
             use: [
-             'style-loader', 'css-loader', 'sass-loader'
+                'style-loader', 'css-loader', 'sass-loader'
             ],
-          },
-          {
+        },
+        {
             test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
             loader: 'url-loader',
             options: {
-              limit: 10000
+                limit: 10000
             }
         },
         {
             test: /\.m?js$/,
             enforce: 'pre',
             use: ['source-map-loader'],
-          }
+        }
         ]
     },
     plugins: [
@@ -47,13 +47,18 @@ module.exports = {
         static: {
             publicPath: '/build',
             directory: path.resolve(__dirname, 'build'),
-       },
-       proxy: {
-        '/home/**': {
-            target: 'http://localhost:3000/',
-            secure: false,
-        } 
-       },
-       historyApiFallback: true
+        },
+        port: 8080,
+        proxy: {
+            '/home/**': {
+                target: 'http://localhost:3000/',
+                secure: false,
+            },
+            '/post-listing': {
+                target: 'http://localhost:3000/',
+                secure: false,
+            }
+        },
+        historyApiFallback: true
     },
 }
