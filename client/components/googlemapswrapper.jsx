@@ -5,7 +5,7 @@ import { useMemo } from "react";
 
 export default function GoogleMapApi({ myLat, myLng }) {
     const { isLoaded } = useLoadScript({
-        googleMapsApiKey: process.env.REACT_APP_GOOGLE_API
+        googleMapsApiKey: 
     });
 
     if (!isLoaded) return <div>Loading...</div>

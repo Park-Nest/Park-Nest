@@ -26,7 +26,7 @@ const ConfirmedBooking = () => {
     })
    
     setDefaults({
-        key: process.env.REACT_APP_GOOGLE_API,
+        key: ,
         language: "en",
         region: "es"
     })
@@ -36,7 +36,7 @@ const ConfirmedBooking = () => {
             const { lat, lng } = results[0].geometry.location;
             setLat(lat);
             setLng(lng);
-            console.log('myBookingLatLong', myLat)
+            console.log('myBookingLatLong', lat)
         })
         .catch(console.err)
 
@@ -55,11 +55,11 @@ const ConfirmedBooking = () => {
         <div>
         <Navbar />
         <Container sx={{marginY: 5}}>
-            <Grid container spacing={2}>
+            <Grid container spacing={3}>
                 <Grid item xs={6}>
                     <Paper elevation={4}>
                         <img src={myBooking.current.photo} alt="parking spot" className="one-spot"/>
-                        <Box sx={{paddingX: 1}}>
+                        <Box sx={{paddingX: 1, justifyContent: "center", display: "flex",}}>
                             <Typography variant="h4" component="h2">
                                 {myBooking.current.name}
                             </Typography>
@@ -69,11 +69,11 @@ const ConfirmedBooking = () => {
                             display: "flex",
                             alignItems: "center",
                             marginLeft: "7px",
-                            marginTop: "5px"
+                            marginTop: "7px",
                             }}
                         >
                             <Map style={{ width: 15 }} />
-                            <Typography variant="h6" component="p" marginLeft={1}>
+                            <Typography variant="subtitle1" component="p" marginLeft={1}>
                                 {myBooking.current.address}
                             </Typography>
                         </Box>
@@ -82,12 +82,11 @@ const ConfirmedBooking = () => {
                             display: "flex",
                             alignItems: "center",
                             marginLeft: "7px",
-                            marginTop: "5px",
-                            marginTop: "5px"
+                            marginTop: "7px",
                             }}
                         >
                             <AttachMoney style={{ width: 15 }} />
-                            <Typography variant="h6" component="p" marginLeft={1}>
+                            <Typography variant="subtitle1" component="p" marginLeft={1}>
                                 ${myBooking.current.rate}/Hour
                             </Typography>
                         </Box>
@@ -96,11 +95,11 @@ const ConfirmedBooking = () => {
                             display: "flex",
                             alignItems: "center",
                             marginLeft: "7px",
-                            marginTop: "5px"
+                            marginTop: "7px"
                             }}
                         >
                             <AccessTime style={{ width: 15 }} />
-                            <Typography variant="h6" component="p" marginLeft={1}>
+                            <Typography variant="subtitle1" component="p" marginLeft={1}>
                                 {myBooking.current.hours}
                             </Typography>
                         </Box>
@@ -109,19 +108,21 @@ const ConfirmedBooking = () => {
                             display: "flex",
                             alignItems: "center",
                             marginLeft: "7px",
-                            marginTop: "5px"
+                            marginTop: "7px"
                             }}
                         >
                             <Description style={{ width: 15 }} />
-                            <Typography variant="h6" component="p" marginLeft={1}>
+                            <Typography variant="subtitle1" component="p" marginLeft={1}>
                                 {myBooking.current.description}
                             </Typography>
                         </Box>
                         <Box
                             sx={{
                             display: "flex",
-                            padding: 1,
-                            marginLeft: 2
+                            padding: 2,
+                            marginLeft: 2,
+                            justifyContent: "center", 
+                            display: "flex",
                             }}
                             >
                             <Button variant="contained" size='medium'color="error" onClick={() => deleteBooking()}>Cancel</Button>
