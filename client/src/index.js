@@ -3,8 +3,11 @@ import reactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Profile from '../pages/profile.jsx';
 import ListingCreationPage from "../pages/ListingCreationPage.jsx";
+import Landing from '../pages/landingpage.jsx';
 import { GlobalProvider } from "../context/GlobalState.js";
-
+import Signup from "../pages/signup.jsx";
+import Login from "../pages/login.jsx";
+import Confirmedbooking from "../pages/confirmedbooking.jsx"
 
 const router = createBrowserRouter([
     {
@@ -12,7 +15,8 @@ const router = createBrowserRouter([
         element: <Profile />
     },
     {
-        path: '/'
+        path: '/',
+        element: <Landing />
     },
     {
         path: '/login'
@@ -21,20 +25,24 @@ const router = createBrowserRouter([
         path: '/signup'
     },
     {
-        path: '/homepage'
+        path: '/login',
+        element: <Login />
     },
     {
-        path: '/listing-booking'
+        path: '/signup',
+        element: <Signup />
     },
     {
         path: '/listing-creation',
         element: <ListingCreationPage />
     },
     {
-        path: '/confirmed-booking'
+        path: '/confirmed-booking',
+        element: <Confirmedbooking />
     },
     {
-        path: '/existing-listing'
+        path: '/existing-listing',
+
     }
 ])
 
