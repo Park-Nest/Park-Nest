@@ -52,7 +52,7 @@ const ListingCreationPage = () => {
       //   description: description,
       // }
 
-      fetch('/post-listing', {
+      fetch('home/post-listing', {
         method: 'POST',
         // headers: {
         //   'Content-type': 'multipart/form-data'
