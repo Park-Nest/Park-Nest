@@ -36,4 +36,12 @@ router.post('/auth/signup',
   }
 )
 
+// Route handler for loggin in user
+router.post('/auth/login',
+  userController.loginUser,
+  (req, res) => {
+    return res.status(200).json({user: true})
+  }
+)
+
 module.exports = router;
