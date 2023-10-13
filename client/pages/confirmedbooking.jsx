@@ -25,21 +25,17 @@ const ConfirmedBooking = () => {
     })
 
     useEffect(() => {
-        //Set listingID so it can be deleted from Bookings table (passed to cancel button)
-        setListingID(passedInID)
-        //set myBooking so it persist the re-render
-        setMyBooking(currBooking.current)
-    }, [])
-
-    useEffect(() => {
-        console.log(myBooking)
-         //Google Geocoder - get lat/long from address
-         setDefaults({
+         //Set listingID so it can be deleted from Bookings table (passed to cancel button)
+         setListingID(passedInID)
+         //set myBooking so it persist the re-render
+         setMyBooking(currBooking.current)
+        //Google Geocoder - get lat/long from address
+        setDefaults({
             key: process.env.REACT_APP_GOOGLE_API,
             language: "en",
             region: "es"
         })
-        fromAddress(`${myBooking.address + ' ' + myBooking.city + ' ' + myBooking.state}`)
+        fromAddress(`${currBooking.current.address + ' ' + currBooking.current.city + ' ' + currBooking.current.state}`)
             .then(({ results }) => {
                 const { lat, lng } = results[0].geometry.location;
                 setLatLng([{lat: lat, lng: lng}])
