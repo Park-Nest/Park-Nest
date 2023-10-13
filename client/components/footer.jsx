@@ -32,7 +32,6 @@ export default function Footer() {
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          width: '100%',
           minHeight: '100vh',
         }}
       >

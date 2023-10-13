@@ -6,6 +6,7 @@ import Landing from '../pages/landingpage.jsx';
 import { GlobalProvider } from "../context/GlobalState.js";
 import Signup from "../pages/signup.jsx";
 import Login from "../pages/login.jsx";
+import Confirmedbooking from "../pages/confirmedbooking.jsx"
 import ExistingListing from "../pages/existingListings.jsx";
 import EditListing from "../pages/editListing.jsx";
 
@@ -36,7 +37,8 @@ const router = createBrowserRouter([
         path: '/listing-creation'
     },
     {
-        path: '/confirmed-booking'
+        path: '/confirmed-booking',
+        element: <Confirmedbooking />
     },
     {
         path: '/existing-listing',
