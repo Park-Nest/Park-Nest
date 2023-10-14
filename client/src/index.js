@@ -7,6 +7,7 @@ import { GlobalProvider } from "../context/GlobalState.js";
 import Signup from "../pages/signup.jsx";
 import Login from "../pages/login.jsx";
 import Confirmedbooking from "../pages/confirmedbooking.jsx"
+import Search from "../pages/search.jsx";
 
 const router = createBrowserRouter([
     {
@@ -18,10 +19,11 @@ const router = createBrowserRouter([
         element: <Landing />
     },
     {
-        path: '/login'
+        path: '/signup'
     },
     {
-        path: '/signup'
+        path: '/search',
+        element: <Search />
     },
     {
         path: '/login',
@@ -41,7 +43,7 @@ const router = createBrowserRouter([
     {
         path: '/existing-listing',
 
-    }
+    },
 ])
 
 reactDOM.createRoot(document.getElementById("root")).render(

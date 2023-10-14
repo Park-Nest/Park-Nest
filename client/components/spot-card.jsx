@@ -13,7 +13,7 @@ const SpotCard = ({ listingid, name, address, rate, hours, photo, edit }) => {
   const navigate = useNavigate();
 
 return (
-<Grid item xs={4} md={3}>
+<Grid item xs={4} >
             <Paper elevation={3} className="paper">
               <img src={photo} alt="parking spot" className="spot-card-img"/>
               <Box

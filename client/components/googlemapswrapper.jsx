@@ -9,8 +9,13 @@ export default function GoogleMapApi({ latLng }) {
     });
 
     if (!isLoaded){return <div>Loading...</div>}
-
-    const coordinates = latLng.map((location, index) => {return <Marker position={{lat: location.lat, lng: location.lng}} key={index}/>})
+    console.log('latlng inside google wrapper', latLng.length)
+    let array = [...latLng]
+    const coordinates = array.map((location, index) => {
+        console.log('inside map, location')
+        return <Marker position={{lat: location.lat, lng: location.lng}} key={index}/>
+    })
+    console.log('coordinates', coordinates)
     return <Map coordinates={coordinates}/>;
 }
 

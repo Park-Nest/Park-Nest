@@ -34,6 +34,15 @@ router.get('/getBookings', (req, res) => {
     })
 })
 
+router.get('/getAllListings', (req, res) => {
+    const text = 'SELECT * FROM listings';
+    db.query(text).then((data) => {
+        res.status(200).json(data.rows)
+    }).catch((err) => {
+        console.log('error getting ALL listings')
+    })
+})
+
 router.delete('/deleteBooking', (req, res) => {
     console.log('req body id:', req.body.id)
     const text = 'DELETE FROM bookings WHERE listingid=$1';
