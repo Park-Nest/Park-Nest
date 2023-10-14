@@ -18,13 +18,9 @@ cookieController.setSSID = async (req, res, next) => {
   }
 
   try {
-
     const jtoken = await jwt.sign(id, process.env.SECRET_KEY);
-
     res.cookie('ssid', jtoken, { expires: new Date(Date.now() + 300000), httpOnly: true })
-
     return next()
-
   } catch (err) {
     return next({
       log: `cookieController.setSSID: ERROR: ${err}`,
@@ -34,6 +30,20 @@ cookieController.setSSID = async (req, res, next) => {
   }
 }
 
+cookieController.checkSSID = async (req, res, next) => {
 
+  const check = req.cookies.ssid;
+
+  // const decodedToken = jwt.decode(check)
+
+  try {
+    const userid = jwt.verify(check, process.env.SECRET_KEY)
+    return next();
+  } catch (err) {
+    console.log('error!')
+    res.locals.user = false
+    return next();
+  }
+}
 
 module.exports = cookieController;

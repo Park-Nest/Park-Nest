@@ -18,6 +18,28 @@ const Profile = () => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
     
+    let redirect = false;
+    
+    useEffect(() => {
+      verifyJwt()
+    }, [])
+
+    const verifyJwt = () => {
+      fetch('/home/verify-jwt')
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          // Handle the data here, set redirect based on data if needed
+          if (!redirect) {
+            navigate('/login');
+          }
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    };
+    
+
     useEffect(() => {
         getUserInfo()
     }, [])

@@ -63,4 +63,23 @@ router.post('/auth/login',
   }
 )
 
+// Route handler to check user's cookies
+router.get('/verify-jwt', 
+  cookieController.checkSSID, 
+  (req, res) => {
+    if (!res.locals.user) {
+      return res.status(200).send(res.locals.user)
+  } else {
+      return res.status(200).send(res.locals.user)
+  }}
+)
+
+router.get('/logout', (req, res) => {
+  // Clear the "httpOnly" cookie
+  res.clearCookie('ssid');
+
+  // Send a response indicating successful logout (optional)
+  res.status(200).send({ message: 'Logged out successfully' });
+});
+
 module.exports = router;
