@@ -9,11 +9,11 @@ import {
   import { useNavigate} from "react-router-dom";
   import React from "react";
 
-const SpotCard = ({ listingid, name, address, rate, hours, photo, edit }) => {
+const SpotCard = ({ listingid, name, address, rate, hours, photo, edit, buttontype }) => {
   const navigate = useNavigate();
 
 return (
-<Grid item xs={4} md={3}>
+<Grid item xs={4} >
             <Paper elevation={3} className="paper">
               <img src={photo} alt="parking spot" className="spot-card-img"/>
               <Box
@@ -63,7 +63,7 @@ return (
                     padding: 1
                   }}
                 >
-                 <Button variant="outlined" size='small' onClick={() => navigate(edit, {state: {id: listingid}})}>Edit</Button>
+                 <Button variant="outlined" size='small' onClick={() => navigate(edit, {state: {id: listingid}})}>{buttontype}</Button>
                 </Box>
               </Box>
             </Paper>

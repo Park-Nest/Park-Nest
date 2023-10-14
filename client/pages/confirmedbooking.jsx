@@ -24,30 +24,6 @@ const ConfirmedBooking = () => {
         if (booking.listingid === passedInID) currBooking.current = booking;
     })
 
-    let redirect = false;
-    
-    useEffect(() => {
-      verifyJwt()
-    }, [])
-
-    const verifyJwt = () => {
-      fetch('/home/verify-jwt')
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-          // Handle the data here, set redirect based on data if needed
-          if (!redirect) {
-            navigate('/login');
-          }
-        })
-        .catch((error) => {
-          console.error('Error:', error);
-          redirect = true; // Set redirect to true in case of an error
-          navigate('/login');
-        });
-    };
-    
-
     useEffect(() => {
          //Set listingID so it can be deleted from Bookings table (passed to cancel button)
          setListingID(passedInID)

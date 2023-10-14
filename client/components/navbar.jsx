@@ -26,12 +26,12 @@ const Navbar = () => {
 
 
   return (
-    <nav className='navbar'>
-      <a href="/" className="logo">PARK NEST</a>
-      <ul className="navLinks">
-        <a href="/profile">PROFILE</a>
-        <a onClick={handleLogout}>LOGOUT</a>
-      </ul>
+    <nav className='navbar' >
+        <a href="/search" className="logo">PARK NEST</a>
+        <ul className="navLinks">
+          <a href="/profile">PROFILE</a>
+          <a href="/">LOGOUT</a>
+        </ul>
     </nav>
   );
 }

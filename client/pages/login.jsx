@@ -51,7 +51,7 @@ export default function Login() {
       .then((result) => {
         if (result.user) {
           alert('Successfully logged in!');
-          navigate('/homepage')
+          navigate('/search')
         } else {
           alert('Please try again!')
         }

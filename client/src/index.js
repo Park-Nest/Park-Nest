@@ -14,7 +14,7 @@ import '../styles/navbar.css';
 import ListingCreationPage from "../pages/ListingCreationPage.jsx";
 import ExistingListing from "../pages/existingListings.jsx";
 import EditListing from "../pages/editListing.jsx";
-import Homepage from "../components/homepage.jsx";
+import Search from "../pages/search.jsx";
 
 const router = createBrowserRouter([
     {
@@ -26,6 +26,10 @@ const router = createBrowserRouter([
         element: <Landing />
     },
     {
+        path: '/search',
+        element: <Search />
+    },
+    {
         path: '/signup',
         element: <Signup />
     },
@@ -34,12 +38,8 @@ const router = createBrowserRouter([
         element: <Login />
     },
     {
-        path: '/listing-booking',
-        element: <ListingBooking />
-    },
-    {
-        path: '/homepage',
-        element: <Homepage />
+        path: '/signup',
+        element: <Signup />
     },
     {
         path: '/listing-creation',
