@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const db = require('../model/model');
 const userController = require('../controllers/userController');
-
+const listingsController = require('../controller/listingsController.js');
+require('dotenv').config();
 const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
 const { S3Client, GetObjectCommand, PutObjectCommand } = require("@aws-sdk/client-s3");
 const multer = require('multer')
@@ -202,5 +203,64 @@ router.get('/logout', (req, res) => {
   // Send a response indicating successful logout (optional)
   res.status(200).send({ message: 'Logged out successfully' });
 });
+
+
+
+//functionality for booking a listing. 
+//Grabs Listing
+    router.get('/listing-booking/:listingid', (req, res) => {
+        //listingid above will be a number
+        let listingid = req.params.listingid;
+        const text = `SELECT * FROM listings WHERE listingid=${listingid}`;
+            db.query(text).then((data)=> {
+                console.log(data.rows);
+                res.status(200).json(data.rows[0].listingid);
+            })
+        });
+    
+    
+//post request to insert data into the bookings table.
+    router.post('/listing-Booking/:userid/:listingid', (req, res) => {
+        // Extract parameters from the URL
+        const userid = req.params.userid;
+        const listingid = req.params.listingid;
+      
+// Call the controller function and pass the parameters
+        listingsController.bookListing(req, res, userid, listingid);
+      });
+    
+//gets specific user from database.
+    // router.get('/home/getUser', (req, res) => {
+    //   const text = 'SELECT * FROM users;'
+    //   db.query(text).then((data) => {
+    //       console.log(data.rows)
+    //       res.json(data.rows[0].name)
+    //   })
+    // })
+    
+    
+    //listingBookingRouter
+        //User makes a choice to which spot they want to book - get requests sends to listing booking page. 
+        //When spot is chosen and button is clicked - Post requests book spot. 
+        //Uppdate database for their listings and anyother data that needs to be updated. 
+    
+    router.get('/listing-booking/:listingid', (req, res) => {
+        //listingid above will be a number
+        let listingid = req.params.listingid;
+        const text = `SELECT * FROM listings WHERE listingid=${listingid}`;
+            db.query(text).then((data)=> {
+                console.log(data.rows);
+                res.status(200).json(data.rows[0].listingid);
+            })
+        });
+    
+
+    router.get('/home/getUser', (req, res) => {
+      const text = 'SELECT * FROM users;'
+      db.query(text).then((data) => {
+          console.log(data.rows)
+          res.json(data.rows[0].name)
+      })
+    })
 
 module.exports = router;
