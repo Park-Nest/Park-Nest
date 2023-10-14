@@ -8,9 +8,6 @@ import { GlobalProvider } from "../context/GlobalState.js";
 import Signup from "../pages/signup.jsx";
 import Login from "../pages/login.jsx";
 import Confirmedbooking from "../pages/confirmedbooking.jsx"
-import '../styles/styles.css';
-import '../styles/footer.css';
-import '../styles/navbar.css';
 import ListingCreationPage from "../pages/ListingCreationPage.jsx";
 import ExistingListing from "../pages/existingListings.jsx";
 import EditListing from "../pages/editListing.jsx";
