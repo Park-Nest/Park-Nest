@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../model/model');
 const userController = require('../controllers/userController');
+const cookieController = require('../controllers/cookieController')
 
 
 router.get('/getUser', (req, res) => {
@@ -56,6 +57,7 @@ router.post('/auth/signup',
 // Route handler for loggin in user
 router.post('/auth/login',
   userController.loginUser,
+  cookieController.setSSID,
   (req, res) => {
     return res.status(200).json({user: true})
   }
