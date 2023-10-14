@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { useNavigate, useLocation } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import '../src/styles.css';
+// import '../src/styles.css';
 import { GlobalContext } from "../context/GlobalState";
 
 const ListingBooking = () => {

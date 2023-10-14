@@ -1,0 +1,10 @@
+/* FOOTER.JSX COMPONENT */
+.footer {
+  position: fixed; /* Set the position to fixed */
+  left: 0;
+  bottom: 0; /* Fix it to the bottom of the viewport */
+  width: 100%; /* Make it full width of the viewport */
+  text-align: center;
+  padding: 1rem;
+  border-top: 1px solid #ccc;
+}

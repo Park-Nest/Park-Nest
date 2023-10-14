@@ -2,9 +2,15 @@ import React, { useState } from "react";
 import reactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Profile from '../pages/profile.jsx';
+import Landing from '../pages/landingpage.jsx';
 import ListingBooking from "../pages/ListingBooking.jsx";
 import { GlobalProvider } from "../context/GlobalState.js";
-
+import Signup from "../pages/signup.jsx";
+import Login from "../pages/login.jsx";
+import Confirmedbooking from "../pages/confirmedbooking.jsx"
+import '../styles/styles.css';
+import '../styles/footer.css';
+import '../styles/navbar.css';
 
 const router = createBrowserRouter([
     {
@@ -12,16 +18,19 @@ const router = createBrowserRouter([
         element: <Profile />
     },
     {
-        path: '/'
+        path: '/',
+        element: <Landing />
     },
     {
         path: '/login'
     },
     {
-        path: '/signup'
+        path: '/signup',
+        element: <Signup />
     },
     {
-        path: '/homepage'
+        path: '/login',
+        element: <Login />
     },
     {
         path: '/listing-booking',
@@ -31,10 +40,12 @@ const router = createBrowserRouter([
         path: '/listing-creation'
     },
     {
-        path: '/confirmed-booking'
+        path: '/confirmed-booking',
+        element: <Confirmedbooking />
     },
     {
-        path: '/existing-listing'
+        path: '/existing-listing',
+
     }
 ])
 

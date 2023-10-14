@@ -1,5 +1,13 @@
 const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const webpack = require('webpack')
+const Dotenv = require('dotenv');
+
+const env = Dotenv.config().parsed;
+const envKeys = Object.keys(env).reduce((acc, cv) => {
+    acc[`process.env.${cv}`] = JSON.stringify(env[cv]);
+    return acc;
+}, {})
 
 module.exports = {
     mode: process.env.NODE_ENV,
@@ -41,7 +49,8 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: 'Development',
             template: 'index.html'
-        })
+        }),
+        new webpack.DefinePlugin(envKeys)
     ],
     devServer: {
         static: {
@@ -49,8 +58,8 @@ module.exports = {
             directory: path.resolve(__dirname, 'build'),
        },
        proxy: {
-        '/home/**': {
-            target: 'http://localhost:3000/',
+        '/home': {
+            target: 'http://localhost:3000',
             secure: false,
         } 
        },
