@@ -10,6 +10,7 @@ import Confirmedbooking from "../pages/confirmedbooking.jsx"
 import ListingCreationPage from "../pages/ListingCreationPage.jsx";
 import ExistingListing from "../pages/existingListings.jsx";
 import EditListing from "../pages/editListing.jsx";
+import Homepage from "../components/homepage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -29,8 +30,12 @@ const router = createBrowserRouter([
         element: <Signup />
     },
     {
+        path: '/homepage',
+        element: <Homepage />
+    },
+    {
         path: '/listing-creation',
-        element: <ListingCreationPage />
+        element: <ListingCreationPage />        
     },
     {
         path: '/confirmed-booking',
