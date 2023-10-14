@@ -14,13 +14,15 @@ import {
 
 
   const ExistingListing = () => {
-
-  const context = useContext(GlobalContext);
   const navigate = useNavigate();
+  const context = useContext(GlobalContext);
   const [loading, setLoading] = useState(true);
   const [bookingsLoading, setBookingsLoading] = useState(true);
   const location = useLocation();
-  const listingid = location.state.id;
+  let listingid
+  if (location.state !== null) {
+     listingid = location.state.id;
+  }
     
     useEffect(() => {
         getUserInfo()
@@ -37,11 +39,24 @@ import {
             .then(res => context.setUserBookings(res))
             .catch(err => console.log('error: failed to retrieve bookings')) 
 
+      fetch('/home/verify-jwt')
+            .then((res) => {
+            return res.json()
+             })
+            .then((data) => {
+              if (data === false) {
+                navigate('/login');
+              }
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+
         setLoading(false);
     };
 
     if (loading){
-        return <div>Loading...</div>
+        return <div></div>
     }
     
     else {

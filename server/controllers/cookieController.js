@@ -24,7 +24,7 @@ cookieController.setSSID = async (req, res, next) => {
   } catch (err) {
     return next({
       log: `cookieController.setSSID: ERROR: ${err}`,
-      message: { err: 'Error occurred in userController.addUser. Check server logs for more details.'},
+      message: { err: 'Error occurred in userController.setSSID. Check server logs for more details.'},
       status: 500
     })
   }
