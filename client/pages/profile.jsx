@@ -65,11 +65,11 @@ const Profile = () => {
 
     else {
         const userListings = context.userListings.map((booking) => {
-            return <SpotCard key={booking.listingid} listingid={booking.listingid} name={booking.name} address={booking.address} rate={booking.rate} hours={booking.hours} photo={booking.photo} edit='/existing-listing' />
+            return <SpotCard key={booking.listingid} listingid={booking.listingid} name={booking.name} address={booking.address} rate={booking.rate} hours={booking.hours} photo={booking.photo} edit='/existing-listing' buttontype='Details'/>
         })
 
         const userBookings = context.userBookings.map((booking) => {
-            return <SpotCard key={booking.listingid} listingid={booking.listingid} name={booking.name} address={booking.address} rate={booking.rate} hours={booking.hours} photo={booking.photo} edit='/confirmed-booking' />
+            return <SpotCard key={booking.listingid} listingid={booking.listingid} name={booking.name} address={booking.address} rate={booking.rate} hours={booking.hours} photo={booking.photo} edit='/confirmed-booking' buttontype='Edit' />
         })
 
         return (
@@ -84,16 +84,16 @@ const Profile = () => {
                     <Typography variant="h4" component='h2' marginTop={5} marginBottom={3}>
                         Bookings
                     </Typography>
-                    <Grid container spacing={5}>
+                    <Grid container spacing={8}>
                         {userBookings}
-                        <Button sx={{ marginX: 5, marginY: 15 }} variant='contained' onClick={() => navigate('/')}>
+                        <Button sx={{ marginX: 5, marginY: 15 }} variant='contained' onClick={() => navigate('/search')}>
                             New Booking
                         </Button>
                     </Grid>
                     <Typography variant="h4" component='h2' marginTop={5} marginBottom={3}>
                         Listings
                     </Typography>
-                    <Grid container spacing={5}>
+                    <Grid container spacing={8}>
                         {userListings}
                         <Button sx={{ marginX: 5, marginY: 15 }} variant='contained' onClick={() => navigate('/listing-creation')}>
                             New Listing
