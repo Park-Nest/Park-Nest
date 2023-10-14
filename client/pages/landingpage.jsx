@@ -8,7 +8,7 @@ import {
   } from "@mui/material";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Footer from "../components/footer.jsx"
+import Footer2 from "../components/footer2.jsx"
 import '../styles/styles.css'
 import { createTheme, ThemeProvider } from '@mui/material';
 
@@ -86,8 +86,10 @@ import { createTheme, ThemeProvider } from '@mui/material';
        
         </Box>
         </Container>
+        <div>
+        <Footer2/>
+        </div>
         </Paper>
-        <Footer/>
     </div>
     )
   }
