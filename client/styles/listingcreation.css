@@ -1,0 +1,14 @@
+.form-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  margin-left: 20px;
+  border: 2px solid lightgrey;
+  border-radius: 10px;
+}
+
+.image-container {
+  max-width: 30%;
+  padding: 10px;
+  height: auto;
+}
