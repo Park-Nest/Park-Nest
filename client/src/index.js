@@ -22,6 +22,10 @@ const router = createBrowserRouter([
         element: <Landing />
     },
     {
+        path: '/search',
+        element: <Search />
+    },
+    {
         path: '/login'
     },
     {
@@ -45,7 +49,7 @@ const router = createBrowserRouter([
     },
     {
         path: '/existing-listing',
-
+        element: <ExistingListing />
     }
 ])
 
