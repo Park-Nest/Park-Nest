@@ -63,7 +63,7 @@ const Profile = () => {
                     <Typography variant="h4" component='h2' marginTop={5} marginBottom={3}>
                         Bookings
                     </Typography>
-                    <Grid container spacing={5}>
+                    <Grid container spacing={8}>
                         {userBookings}
                         <Button sx={{ marginX: 5, marginY: 15 }} variant='contained' onClick={() => navigate('/search')}>
                             New Booking
@@ -72,7 +72,7 @@ const Profile = () => {
                     <Typography variant="h4" component='h2' marginTop={5} marginBottom={3}>
                         Listings
                     </Typography>
-                    <Grid container spacing={5}>
+                    <Grid container spacing={8}>
                         {userListings}
                         <Button sx={{ marginX: 5, marginY: 15 }} variant='contained' onClick={() => navigate('/listing-creation')}>
                             New Listing

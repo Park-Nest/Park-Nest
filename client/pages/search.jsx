@@ -9,6 +9,7 @@ import {
     Grid,
     Container,
     Paper,
+    TextField
   } from "@mui/material";
 import { setDefaults, fromAddress } from "react-geocode";
 import React, { useContext, useEffect, useState } from "react";
@@ -28,7 +29,7 @@ const Search = () => {
             setLoading(false)
         })
         .catch(err => console.log('error: failed to retrieve listings'))
-    }, [])
+    }, [latLng])
 
     useEffect(() => {
         let location = []
@@ -51,8 +52,6 @@ const Search = () => {
     const allListings = context.allListings.map((listing) => {
         return <SpotCard key={listing.listingid} listingid={listing.listingid} name={listing.name} address={listing.address} rate={listing.rate} hours={listing.hours} photo={listing.photo} edit='/listing-booking' buttontype='Book'/>
     })
-    
-    console.log('latlong before render', latLng)
 
     if (loading){
         return <CircularProgress />
@@ -62,7 +61,9 @@ const Search = () => {
         <div>
             <Navbar />
             <Container sx={{marginY: 5}}>
-                <Grid container spacing ={3}>
+                <TextField fullWidth label="Search" id="Search" sx={{ marginY: 5 }}/>
+                <hr></hr>
+                <Grid container spacing ={3} sx={{ marginY: 2 }}>
                     <Grid item xs={6}>
                             <Grid container spacing={3}>
                                 {allListings}
