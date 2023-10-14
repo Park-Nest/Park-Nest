@@ -3,6 +3,7 @@ import reactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Profile from '../pages/profile.jsx';
 import Landing from '../pages/landingpage.jsx';
+import ListingBooking from "../pages/ListingBooking.jsx";
 import { GlobalProvider } from "../context/GlobalState.js";
 import Signup from "../pages/signup.jsx";
 import Login from "../pages/login.jsx";
