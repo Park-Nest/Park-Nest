@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { TextField, FormControl, FormLabel, Button } from '@mui/material';
+import Navbar from "../components/navbar.jsx"
+import Footer from "../components/footer.jsx"
 
 const ListingCreationPage = () => {
   const [name, setName] = useState('')
@@ -66,41 +68,45 @@ const ListingCreationPage = () => {
   }
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-      <form encType='multipart/form'>
-        <FormControl>
-          <h1>Create your Listing</h1>
-          <FormLabel>Name</FormLabel>
-          <TextField placeholder='Wonder Parking' onChange={(e) => onChange(e, setName)}></TextField>
-          <FormLabel>Address</FormLabel>
-          <TextField placeholder='123 Park ave' onChange={(e) => onChange(e, setAddress)}></TextField>
-          <FormLabel>City</FormLabel>
-          <TextField placeholder='New York' onChange={(e) => onChange(e, setCity)}></TextField>
-          <FormLabel>State</FormLabel>
-          <TextField placeholder='NY' onChange={(e) => onChange(e, setState)}></TextField>
-          <FormLabel>ZipCode</FormLabel>
-          <TextField placeholder='90210' onChange={(e) => onChange(e, setZipCode)}></TextField>
-          <FormLabel>Country</FormLabel>
-          <TextField placeholder='USA' onChange={(e) => onChange(e, setCountry)}></TextField>
-          <FormLabel>Hours</FormLabel>
-          <TextField placeholder='8am-8pm' onChange={(e) => onChange(e, setHours)}></TextField>
-          <FormLabel>Rate</FormLabel>
-          <TextField placeholder='10' onChange={(e) => onChange(e, setRate)}></TextField>
-          <FormLabel>Description</FormLabel>
-          <TextField fullWidth placeholder='Underground parking connected to mall' onChange={(e) => onChange(e, setDescription)}></TextField>
-          <FormLabel>Upload Image</FormLabel>
-          <input type='file' onChange={(e) => {
-            setUploadedImage(e.target.files[0])
-            setUploadedImageURL(URL.createObjectURL(e.target.files[0]))
-          }} />
-          <Button onClick={submitListing}>Submit</Button>
-        </FormControl>
-      </form>
-      <div style={{ maxWidth: '30%', border: '1px solid lightgrey', padding: '10px', borderRadius: '5px' }}>
-        <h2>Parking Lot Image</h2>
-        <img width="80%" src={uploadedImageURL} />
+    <>
+      <Navbar />
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <form encType='multipart/form'>
+          <FormControl>
+            <h1>Create your Listing</h1>
+            <FormLabel>Name</FormLabel>
+            <TextField placeholder='Wonder Parking' onChange={(e) => onChange(e, setName)}></TextField>
+            <FormLabel>Address</FormLabel>
+            <TextField placeholder='123 Park ave' onChange={(e) => onChange(e, setAddress)}></TextField>
+            <FormLabel>City</FormLabel>
+            <TextField placeholder='New York' onChange={(e) => onChange(e, setCity)}></TextField>
+            <FormLabel>State</FormLabel>
+            <TextField placeholder='NY' onChange={(e) => onChange(e, setState)}></TextField>
+            <FormLabel>ZipCode</FormLabel>
+            <TextField placeholder='90210' onChange={(e) => onChange(e, setZipCode)}></TextField>
+            <FormLabel>Country</FormLabel>
+            <TextField placeholder='USA' onChange={(e) => onChange(e, setCountry)}></TextField>
+            <FormLabel>Hours</FormLabel>
+            <TextField placeholder='8am-8pm' onChange={(e) => onChange(e, setHours)}></TextField>
+            <FormLabel>Rate</FormLabel>
+            <TextField placeholder='10' onChange={(e) => onChange(e, setRate)}></TextField>
+            <FormLabel>Description</FormLabel>
+            <TextField fullWidth placeholder='Underground parking connected to mall' onChange={(e) => onChange(e, setDescription)}></TextField>
+            <FormLabel>Upload Image</FormLabel>
+            <input type='file' onChange={(e) => {
+              setUploadedImage(e.target.files[0])
+              setUploadedImageURL(URL.createObjectURL(e.target.files[0]))
+            }} />
+            <Button onClick={submitListing}>Submit</Button>
+          </FormControl>
+        </form>
+        <div style={{ maxWidth: '30%', border: '1px solid lightgrey', padding: '10px', borderRadius: '5px' }}>
+          <h2>Parking Lot Image</h2>
+          <img width="80%" src={uploadedImageURL} />
+        </div>
       </div>
-    </div>
+      <Footer />
+    </>
   )
 }
 
