@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { TextField, FormControl, FormLabel, Button } from '@mui/material';
 import Navbar from "../components/navbar.jsx"
 import Footer from "../components/footer.jsx"
@@ -17,6 +18,7 @@ const ListingCreationPage = () => {
   const [uploadedImage, setUploadedImage] = useState(null)
   const [uploadedImageURL, setUploadedImageURL] = useState("https://t4.ftcdn.net/jpg/04/81/13/43/360_F_481134373_0W4kg2yKeBRHNEklk4F9UXtGHdub3tYk.jpg")
 
+  const navigate = useNavigate();
 
   function onChange(e, setter) {
     setter(e.target.value)
@@ -66,6 +68,7 @@ const ListingCreationPage = () => {
         //testing getting image from s3 bucket
         // .then(data => setUploadedImageURL(data))
         .then(data => setUploadedImageURL('https://uploads-ssl.webflow.com/5ef0df6b9272f7410180a013/60c0e28575cd7c21701806fd_q1cunpuhbdreMPFRSFLyfUXNzpqv_I5fz_plwv6gV3sMNXwUSPrq88pC2iJijEV7wERnKXtdTA0eE4HvdnntGo9AHAWn-IcMPKV-rZw1v75vlTEoLF4OdNqsRb7C6r7Mvzrm7fe4.png'))
+        .then(() => navigate('/profile'))
 
     }
   }

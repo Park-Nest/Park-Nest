@@ -36,7 +36,7 @@ const router = createBrowserRouter([
     },
     {
         path: '/listing-creation',
-        element: <ListingCreationPage />        
+        element: <ListingCreationPage />
     },
     {
         path: '/confirmed-booking',
@@ -49,6 +49,10 @@ const router = createBrowserRouter([
     {
         path: '/edit-listing',
         element: <EditListing />
+    },
+    {
+        path: '/listing-booking',
+        element: <ListingBooking />
     }
 ])
 
