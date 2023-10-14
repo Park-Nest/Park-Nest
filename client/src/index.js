@@ -11,6 +11,10 @@ import Confirmedbooking from "../pages/confirmedbooking.jsx"
 import '../styles/styles.css';
 import '../styles/footer.css';
 import '../styles/navbar.css';
+import ListingCreationPage from "../pages/ListingCreationPage.jsx";
+import ExistingListing from "../pages/existingListings.jsx";
+import EditListing from "../pages/editListing.jsx";
+import Homepage from "../components/homepage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -20,9 +24,6 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <Landing />
-    },
-    {
-        path: '/login'
     },
     {
         path: '/signup',
@@ -37,7 +38,12 @@ const router = createBrowserRouter([
         element: <ListingBooking />
     },
     {
-        path: '/listing-creation'
+        path: '/homepage',
+        element: <Homepage />
+    },
+    {
+        path: '/listing-creation',
+        element: <ListingCreationPage />        
     },
     {
         path: '/confirmed-booking',
@@ -45,12 +51,16 @@ const router = createBrowserRouter([
     },
     {
         path: '/existing-listing',
-
+        element: <ExistingListing />
+    },
+    {
+        path: '/edit-listing',
+        element: <EditListing />
     }
 ])
 
 reactDOM.createRoot(document.getElementById("root")).render(
     <GlobalProvider>
-      <RouterProvider router={router} />
+        <RouterProvider router={router} />
     </GlobalProvider>
 );
