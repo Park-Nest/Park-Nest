@@ -38,6 +38,7 @@ cookieController.checkSSID = async (req, res, next) => {
 
   try {
     const userid = jwt.verify(check, process.env.SECRET_KEY)
+    res.locals.user = true
     return next();
   } catch (err) {
     console.log('error!')
