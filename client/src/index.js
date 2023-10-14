@@ -40,8 +40,12 @@ const router = createBrowserRouter([
         element: <Signup />
     },
     {
+        path: '/homepage',
+        element: <Homepage />
+    },
+    {
         path: '/listing-creation',
-        element: <ListingCreationPage />
+        element: <ListingCreationPage />        
     },
     {
         path: '/confirmed-booking',

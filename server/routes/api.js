@@ -17,6 +17,7 @@ const s3 = new S3Client({
 
 const storage = multer.memoryStorage()
 const upload = multer({ storage: storage })
+const cookieController = require('../controllers/cookieController')
 
 
 router.get('/getUser', (req, res) => {
@@ -173,5 +174,33 @@ router.post('/post-listing', upload.single('image'), async (req, res, next) => {
         next(e);
     }
 })
+
+// Route handler for loggin in user
+router.post('/auth/login',
+  userController.loginUser,
+  cookieController.setSSID,
+  (req, res) => {
+    return res.status(200).json({user: true})
+  }
+)
+
+// Route handler to check user's cookies
+router.get('/verify-jwt', 
+  cookieController.checkSSID, 
+  (req, res) => {
+    if (!res.locals.user) {
+      return res.status(200).send(res.locals.user)
+  } else {
+      return res.status(200).send(res.locals.user)
+  }}
+)
+
+router.get('/logout', (req, res) => {
+  // Clear the "httpOnly" cookie
+  res.clearCookie('ssid');
+
+  // Send a response indicating successful logout (optional)
+  res.status(200).send({ message: 'Logged out successfully' });
+});
 
 module.exports = router;
