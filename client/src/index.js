@@ -8,6 +8,8 @@ import Signup from "../pages/signup.jsx";
 import Login from "../pages/login.jsx";
 import Confirmedbooking from "../pages/confirmedbooking.jsx"
 import ListingCreationPage from "../pages/ListingCreationPage.jsx";
+import ExistingListing from "../pages/existingListings.jsx";
+import EditListing from "../pages/editListing.jsx";
 
 const router = createBrowserRouter([
     {
@@ -36,7 +38,11 @@ const router = createBrowserRouter([
     },
     {
         path: '/existing-listing',
-
+        element: <ExistingListing />
+    },
+    {
+        path: '/edit-listing',
+        element: <EditListing />
     }
 ])
 

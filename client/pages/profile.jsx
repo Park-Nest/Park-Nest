@@ -14,6 +14,7 @@ import { GlobalContext } from "../context/GlobalState.js";
 
 
 const Profile = () => {
+
     const context = useContext(GlobalContext);
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
@@ -32,6 +33,7 @@ const Profile = () => {
             .then(res => res.json())
             .then(res => context.setUserBookings(res))
             .catch(err => console.log('error: failed to retrieve bookings'))
+
 
         setLoading(false)
     };
