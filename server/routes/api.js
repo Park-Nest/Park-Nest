@@ -67,6 +67,7 @@ router.post('/remove-listing', (req, res) => {
 })
 
 
+
 // Route handler for signing up user
 router.post('/auth/signup',
   userController.addUser,
