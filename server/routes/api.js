@@ -34,7 +34,7 @@ router.get('/getListings', async (req, res) => {
     const text = 'SELECT * FROM listings WHERE userid=1;'
     try {
         let dataRows = await db.query(text)
-        console.log(dataRows.rows);
+        //console.log(dataRows.rows);
         for (const listing of dataRows.rows) {
             const getObjectParams = {
                 Bucket: process.env.AWS_BUCKET_NAME,
@@ -57,7 +57,7 @@ router.get('/getBookings', async (req, res) => {
     const text = 'SELECT listings.* FROM bookings JOIN listings ON listings.listingID = bookings.listingID WHERE bookings.userid=1;'
     try {
         let dataRows = await db.query(text)
-        console.log(dataRows.rows);
+        //console.log(dataRows.rows);
         for (const listing of dataRows.rows) {
             const getObjectParams = {
                 Bucket: process.env.AWS_BUCKET_NAME,
@@ -75,13 +75,26 @@ router.get('/getBookings', async (req, res) => {
     }
 })
 
-router.get('/getAllListings', (req, res) => {
+router.get('/getAllListings', async (req, res) => {
     const text = 'SELECT * FROM listings';
-    db.query(text).then((data) => {
-        res.status(200).json(data.rows)
-    }).catch((err) => {
-        console.log('error getting ALL listings')
-    })
+    try {
+        let dataRows = await db.query(text)
+        //console.log(dataRows.rows);
+        for (const listing of dataRows.rows) {
+            const getObjectParams = {
+                Bucket: process.env.AWS_BUCKET_NAME,
+                //this is just an example key, when you query the sql db you want to add the value that's in the image column
+                Key: listing.photo,
+            }
+            const command = new GetObjectCommand(getObjectParams);
+            const url = await getSignedUrl(s3, command, { expiresIn: 3600 });
+            listing.photo = url;
+        }
+        res.status(200).json(dataRows.rows)
+    }
+    catch (err) {
+        console.log('error getting listings: ' + err)
+    }
 })
 
 router.delete('/deleteBooking', (req, res) => {

@@ -49,7 +49,7 @@ const Search = () => {
     }, [loading])
 
     const allListings = context.allListings.map((listing) => {
-        return <SpotCard key={listing.listingid} listingid={listing.listingid} name={listing.name} address={listing.address} rate={listing.rate} hours={listing.hours} photo={listing.photo} edit='/listing-booking'/>
+        return <SpotCard key={listing.listingid} listingid={listing.listingid} name={listing.name} address={listing.address} rate={listing.rate} hours={listing.hours} photo={listing.photo} edit='/listing-booking' buttontype='Book'/>
     })
     
     console.log('latlong before render', latLng)
