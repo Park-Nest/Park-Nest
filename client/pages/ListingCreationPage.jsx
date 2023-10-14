@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { TextField, FormControl, FormLabel, Button } from '@mui/material';
 import Navbar from "../components/navbar.jsx"
 import Footer from "../components/footer.jsx"
+import '../styles/listingcreation.css'
 
 const ListingCreationPage = () => {
   const [name, setName] = useState('')
@@ -14,7 +15,7 @@ const ListingCreationPage = () => {
   const [rate, setRate] = useState('')
   const [description, setDescription] = useState('')
   const [uploadedImage, setUploadedImage] = useState(null)
-  const [uploadedImageURL, setUploadedImageURL] = useState("https://www.westend61.de/images/0001441625pw/aerial-view-of-cars-parked-in-outdoor-parking-lot-KNTF05253.jpg")
+  const [uploadedImageURL, setUploadedImageURL] = useState("https://t4.ftcdn.net/jpg/04/81/13/43/360_F_481134373_0W4kg2yKeBRHNEklk4F9UXtGHdub3tYk.jpg")
 
 
   function onChange(e, setter) {
@@ -23,7 +24,7 @@ const ListingCreationPage = () => {
 
   function submitListing(e) {
     console.log(uploadedImage)
-    if (name == '' || address == '' || city == '' || state == '' || zipCode == '' || country == '' || hours == '' || rate == '' || description == '') {
+    if (name == '' || address == '' || city == '' || state == '' || zipCode == '' || country == '' || hours == '' || rate == '' || description == '' || uploadedImage == null) {
       alert('Incorrect inputs in fields')
     }
     else {
@@ -62,7 +63,9 @@ const ListingCreationPage = () => {
         body: formData
       })
         .then(res => res.json())
-        .then(data => setUploadedImageURL(data))
+        //testing getting image from s3 bucket
+        // .then(data => setUploadedImageURL(data))
+        .then(data => setUploadedImageURL('https://uploads-ssl.webflow.com/5ef0df6b9272f7410180a013/60c0e28575cd7c21701806fd_q1cunpuhbdreMPFRSFLyfUXNzpqv_I5fz_plwv6gV3sMNXwUSPrq88pC2iJijEV7wERnKXtdTA0eE4HvdnntGo9AHAWn-IcMPKV-rZw1v75vlTEoLF4OdNqsRb7C6r7Mvzrm7fe4.png'))
 
     }
   }
@@ -70,7 +73,7 @@ const ListingCreationPage = () => {
   return (
     <>
       <Navbar />
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+      <div className='form-container'>
         <form encType='multipart/form'>
           <FormControl>
             <h1>Create your Listing</h1>
@@ -100,7 +103,7 @@ const ListingCreationPage = () => {
             <Button onClick={submitListing}>Submit</Button>
           </FormControl>
         </form>
-        <div style={{ maxWidth: '30%', border: '1px solid lightgrey', padding: '10px', borderRadius: '5px' }}>
+        <div className='image-container'>
           <h2>Parking Lot Image</h2>
           <img width="80%" src={uploadedImageURL} />
         </div>
